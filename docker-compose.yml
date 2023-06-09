@@ -12,8 +12,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
   backend:
-    container_name: backend_production
-    image: 7ras0tresh/kittygram_backend
+    build: ./backend/
     env_file: .env
     depends_on:
       - db
@@ -21,15 +20,13 @@ services:
       - static:/static
       - media:/media/
   frontend:
-    container_name: frontend_production
-    image: 7ras0tresh/kittygram_frontend
     env_file: .env
+    build: ./frontend/
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
-    container_name: gateway_production
-    image: 7ras0tresh/kittygram_gateway
+    build: ./nginx/
     env_file: .env
     ports:
       - 9000:80
