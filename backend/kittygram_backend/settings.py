@@ -1,4 +1,3 @@
-# flake8
 import os
 from pathlib import Path
 
@@ -6,9 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = True
+DEBUG = bool(os.getenv('DEBUG'))
 
-ALLOWED_HOSTS = ['kittyk.ddns.net', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [os.getenv('DOMAIN'), 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
